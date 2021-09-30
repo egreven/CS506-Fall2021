@@ -61,6 +61,10 @@ Run the tests with the following command
 ```bash
     tox 
 ```
+    run in virtualEnv: 
+```bash
+    python -m tox 
+```
 
 Ensure that all the tests are failing because of a "NotImplementedError" being raised. Here is the expected last few lines of the error message from tox you should expect:
 
