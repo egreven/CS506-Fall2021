@@ -2,6 +2,7 @@ from collections import defaultdict
 from math import inf
 import random
 import csv
+import numpy as np
 
 
 def point_avg(points):
@@ -11,7 +12,7 @@ def point_avg(points):
     
     Returns a new point which is the center of all the points.
     """
-    raise NotImplementedError()
+    return np.mean(points, axis=0)
 
 
 def update_centers(dataset, assignments):
@@ -21,7 +22,22 @@ def update_centers(dataset, assignments):
     Compute the center for each of the assigned groups.
     Return `k` centers in a list
     """
-    raise NotImplementedError()
+    clusterIndex = 0
+    centroidsAssignment = {}
+    print(dataset[1])
+    print(assignments[1])
+    for row in range(len(dataset)):
+        if assignments[row] in centroidsAssignment:
+            centroidsAssignment[assignments[row]] += [dataset[row]]
+        else:
+            centroidsAssignment[assignments[row]] = [dataset[row]]
+    # print("ASIGNMENT", centroidsAssignment[1])
+    actualCentroids = []
+    
+    for cluster in centroidsAssignment:
+        actualCentroids += [np.mean(centroidsAssignment[cluster], axis=0)]
+    # print(actualCentroids)
+    return actualCentroids
 
 def assign_points(data_points, centers):
     """
@@ -43,19 +59,24 @@ def distance(a, b):
     """
     Returns the Euclidean distance between a and b
     """
-    raise NotImplementedError()
+    res = 0
+    for i in range(len(a)):
+        res += (a[i] - b[i])**2
+    return res**(1/2)
 
 def distance_squared(a, b):
-    raise NotImplementedError()
+    return distance(a,b) ** 2
 
 def generate_k(dataset, k):
     """
     Given `data_set`, which is an array of arrays,
     return a random set of k points from the data_set
     """
-    raise NotImplementedError()
+    random.shuffle(dataset)
+    return dataset[:k]
 
 def cost_function(clustering):
+    " NOT SURE WHAT IS SUPPOSED TO BE IMPLEMENTED HERE"
     raise NotImplementedError()
 
 
