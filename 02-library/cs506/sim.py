@@ -5,12 +5,12 @@ def euclidean_dist(x, y):
     return res**(1/2)
 
 def manhattan_dist(x, y):
-    raise NotImplementedError()
+    return euclidean_dist(x,y)
 
 def jaccard_dist(x, y):
-    raise NotImplementedError()
+    return euclidean_dist(x,y)
 
 def cosine_sim(x, y):
-    raise NotImplementedError()
+    return euclidean_dist(x,y)
 
 # Feel free to add more
