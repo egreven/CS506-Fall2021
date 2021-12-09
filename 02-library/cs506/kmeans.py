@@ -87,8 +87,12 @@ def generate_k_pp(dataset, k):
     where points are picked with a probability proportional
     to their distance as per kmeans pp
     """
-    raise NotImplementedError()
-
+    k_vals_pp = []
+    for i in range(len(dataset[0])):
+        distance_sq = distance_squared(dataset[0], dataset[0][i])
+        k_vals_pp += [x/distance_sq for x in dataset[0][i]]
+    random.shuffle(k_vals_pp)
+    return k_vals_pp[:k]
 
 def _do_lloyds_algo(dataset, k_points):
     assignments = assign_points(dataset, k_points)
